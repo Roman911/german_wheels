@@ -1,11 +1,19 @@
-import React from 'react';
+import { SVGProps } from 'react';
 
-import type { IconProps } from '../../../models/icon';
-
-export const HomeIcon: React.FC<IconProps> = ({ className = 'fill-black' }) => {
-	return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none" className={ className }>
-		<path fillRule="evenodd" clipRule="evenodd"
-					d="M8.42293 0L16 6.89382L15.1541 7.73772L13.9509 6.64897V14.4057L13.3552 15H9.78109L9.18541 14.4057V10.2456H6.80268V14.4057L6.207 15H2.63291L2.03723 14.4057V6.65848L0.845868 7.73772L0 6.89382L7.56515 0H8.42293ZM3.22859 5.57805V13.8114H5.61132V9.65135L6.207 9.05705H9.78109L10.3768 9.65135V13.8114H12.7595V5.57092L7.99404 1.2599L3.22859 5.57805Z"
+const HomeIcon = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width="24px"
+		height="24px"
+		fill="none"
+		fillRule='evenodd'
+		clipRule='evenodd'
+		viewBox="0 0 24 24"
+		{ ...props }
+	>
+		<path
+			d="M12.6344 1.5L24 11.8407L22.7312 13.1066L20.9263 11.4735V23.1086L20.0328 24H14.6716L13.7781 23.1086V16.8685H10.204V23.1086L9.3105 24H3.94937L3.05585 23.1086V11.4877L1.2688 13.1066L0 11.8407L11.3477 1.5H12.6344ZM4.84289 9.86708V22.2171H8.41698V15.977L9.3105 15.0856H14.6716L15.5652 15.977V22.2171H19.1392V9.85638L11.9911 3.38986L4.84289 9.86708Z"
 		/>
 	</svg>
-}
+);
+
+export default HomeIcon;

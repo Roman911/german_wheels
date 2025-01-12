@@ -19,9 +19,9 @@ type IsMulti = false;
 const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 	control: (styles) => ({
 		...styles,
-		padding: '11px 4px 11px 16px',
+		padding: '5px 4px 5px 16px',
 		borderColor: 'transparent',
-		backgroundColor: 'rgba(255, 255, 255, 0.16)',
+		backgroundColor: 'rgba(255, 255, 255, 0.8)',
 		':hover': {
 			borderColor: '#8CC9FF',
 			boxShadow: '0 0 0 1px #8CC9FF',
@@ -32,19 +32,19 @@ const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 		...styles,
 		fontSize: 18,
 		fontWeight: 500,
-		color: '#FFFFFF',
+		color: '#181818',
 	}),
 	singleValue: (styles) => ({
 		...styles,
 		fontSize: 18,
 		fontWeight: 500,
-		color: '#FFFFFF',
+		color: '#181818',
 	}),
 	placeholder: (styles, { isDisabled}) => ({
 		...styles,
 		fontSize: 18,
 		fontWeight: 500,
-		color: isDisabled ? '#ffffff82' : '#FFFFFF',
+		color: isDisabled ? '#18181899' : '#181818',
 	}),
 	indicatorSeparator: (styles) => ({
 		...styles,
@@ -52,16 +52,16 @@ const colourStyles: StylesConfig<Options | undefined, IsMulti> = {
 	}),
 	dropdownIndicator: (styles, { isDisabled}) => ({
 		...styles,
-		color: isDisabled ? '#ffffff82' : '#FFFFFF',
+		color: isDisabled ? '#18181899' : '#181818',
 		':hover': {
-			color: '#FFFFFF',
+			color: '#181818',
 		},
 	}),
 	clearIndicator: (styles) => ({
 		...styles,
-		color: '#FFFFFF',
+		color: '#181818',
 		':hover': {
-			color: '#FFFFFF',
+			color: '#181818',
 		},
 	}),
 	menuList: (provided) => {

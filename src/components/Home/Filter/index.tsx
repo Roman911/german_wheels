@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { useAppDispatch, useAppTranslation } from '../../../hooks';
 import { changeSection } from '../../../store/reducers/filterSlice';
@@ -11,6 +12,7 @@ import { FilterByCar } from '../../../containers/Home/FilterByCar';
 import { Section } from '../../../models/filter';
 import type { Options } from '../../../models/baseData';
 import type { OnChange } from '../../../models/filterHomePage';
+import styles from './index.module.scss';
 
 interface IFilterProps {
 	section: Section
@@ -46,20 +48,17 @@ export const FilterComponent: FC<IFilterProps> = ({ data, section, onChange, onS
 		}
 	};
 
-	return <section className='home-filter bg-blue-600'>
+	return <section className={ twMerge(styles['home-filter'], styles[`home-filter__${ section }`]) }>
 		<div className="mx-auto py-6 px-5 md:px-8 lg:py-16 xl:py-24 2xl:px-28 max-w-screen-2xl w-full">
-			<div className="mt-2 lg:mt-11 flex flex-col md:flex-row text-blue-300">
-				<Tab name={ Section.Tires } section={ section } isOpen={ isOpen } handleClick={ handleClick } label={ t('tires by parameters') }>
-					<TiresFilter filters={ data } onChange={ onChange } onSubmit={ onSubmit } />
-				</Tab>
-				<Tab name={ Section.Disks } section={ section } isOpen={ isOpen } handleClick={ handleClick } label={ t('disks by parameters') }>
-					<DisksFilter filters={ data } onChange={ onChange } onSubmit={ onSubmit } />
-				</Tab>
-				<Tab name={ Section.Car } section={ section } isOpen={ isOpen } handleClick={ handleClick } label={ t('selection by car') }>
-					<FilterByCar/>
-				</Tab>
+			<div className={ twMerge('mt-2 md:mt-11 mb-8 flex justify-center gap-x-2.5') }>
+				<Tab name={ Section.Tires } section={ section } isOpen={ isOpen } handleClick={ handleClick }
+						 label={ t('tires') }/>
+				<Tab name={ Section.Disks } section={ section } isOpen={ isOpen } handleClick={ handleClick }
+						 label={ t('disks') }/>
+				<Tab name={ Section.Car } section={ section } isOpen={ isOpen } handleClick={ handleClick }
+						 label={ t('selection by car') }/>
 			</div>
-			<div className="hidden md:block">{ renderFilter() }</div>
+			<div className="">{ renderFilter() }</div>
 		</div>
 	</section>
 }

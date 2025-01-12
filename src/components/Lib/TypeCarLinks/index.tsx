@@ -61,7 +61,7 @@ const LinkComponent: FC<ILinkComponent> = (
 				'transition  group-hover:fill-blue-200 fill-gray-500',
 				!active && iconStyles,
 				active && iconStylesActive,
-				active && 'fill-blue-200'
+				active && 'fill-blue-200 stroke-blue-200'
 			)
 		}/>
 		<span className={

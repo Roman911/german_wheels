@@ -1,11 +1,17 @@
-import React from 'react';
+import { SVGProps } from 'react';
 
-import type { IconProps } from '../../../models/icon';
-
-export const MenuIcon: React.FC<IconProps> = ({ className = 'fill-black' }) => {
-	return <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" className={ className }>
-		<rect y="6" width="30" height="2"/>
-		<rect y="14" width="30" height="2"/>
-		<rect y="22" width="30" height="2"/>
+const MenuIcon = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width="24px"
+		height="24px"
+		fill="none"
+		viewBox="0 0 24 24"
+		{ ...props }
+	>
+		<path
+			d="M0 4.31995V5.27995H24V4.31995H0ZM0 11.5199V12.4799H24V11.5199H0ZM0 18.7199V19.6799H24V18.7199H0Z"
+		/>
 	</svg>
-}
+);
+
+export default MenuIcon;

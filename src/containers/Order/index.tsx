@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 
+import { config } from '../../config';
 import { baseDataAPI } from '../../services/baseDataService';
 import { useAppDispatch, useAppGetProducts, useAppSelector, useAppTranslation } from '../../hooks';
 import { reset } from '../../store/reducers/cartSlice';
@@ -14,7 +15,13 @@ import { OrderComponent } from '../../components/Order';
 import { Title } from '../../components/Lib';
 import { LayoutWrapper } from '../../components/Layout';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { onOrderMakeStart, onOrderMakeEnd } from '../../event';
+
+const scrollToTop = () => {
+	window.scrollTo({
+		top: 0,
+		behavior: "smooth"
+	});
+};
 
 const schema = yup.object().shape({
 	firstname: yup.string().required('Це поле обовʼязкове.'),
@@ -54,9 +61,8 @@ export const Order = () => {
 	const [paymentMethod, setPaymentMethod] = useState<number | string | undefined>(1);
 	const { cartItems } = useAppSelector(state => state.cartReducer);
 	const { city, wirehouse } = useAppSelector(state => state.orderReducer);
-	const { settings } = useAppSelector(state => state.settingsReducer);
 	const t = useAppTranslation();
-	const { tires, cargo, disks, battery, autoGoods, services, isLoading} = useAppGetProducts(cartItems, true);
+	const { tires, cargo, disks, battery, isLoading} = useAppGetProducts(cartItems, 'reducerCart', true);
 	const { data: dataOrdersParam } = baseDataAPI.useFetchOrdersParamQuery('');
 	const [ createOrder ] = baseDataAPI.useCreateOrderMutation();
 
@@ -64,13 +70,13 @@ export const Order = () => {
 		result: true,
 		data: {
 			total_count: 5,
-			products: [...tires, ...cargo, ...disks, ...battery, ...autoGoods, ...services],
+			products: [...tires, ...cargo, ...disks, ...battery],
 		},
-	}), [tires, cargo, disks, battery, autoGoods, services]);
+	}), [battery, cargo, disks, tires]);
 
 	useEffect(() => {
-		onOrderMakeStart(newData, cartItems);
-	}, [cartItems, newData]);
+		scrollToTop();
+	}, []);
 
 	const products = newData?.data.products?.map((item) => {
 		return {
@@ -111,6 +117,7 @@ export const Order = () => {
 	];
 
 	const onSubmit: SubmitHandler<FormProps> = async (data) => {
+		const newWindow = window.open("", "_blank");
 		const { firstname, lastname, surname, email, telephone, comment, address } = data;
 		setLoadingBtn(true);
 		await createOrder({
@@ -134,10 +141,9 @@ export const Order = () => {
 			const data = response?.data;
 			if (data) {
 				if(data?.linkpay?.length > 0) {
-					window.open(data?.linkpay, "_blank")
+					if(newWindow) newWindow.location.href = data?.linkpay;
 				}
 				if(data?.result) {
-					onOrderMakeEnd(newData, cartItems, data?.order_id);
 					methods.reset();
 					dispatch(reset());
 					navigate('/order/successful');
@@ -160,14 +166,13 @@ export const Order = () => {
 
 	return <LayoutWrapper>
 		<Helmet>
-			<title>{t('placing an order', true)} | {settings.ua.config_name}</title>
-			<meta name='description' content={`${t('placing an order', true)}} | ${settings.ua.config_name}`}/>
+			<title>{ t('placing an order', true) } | { config.domain }</title>
 		</Helmet>
 		<div className='max-w-5xl mx-auto'>
-			<Breadcrumbs path={path}/>
+			<Breadcrumbs path={ path }/>
 			<Title title='placing an order'/>
-			<FormProvider {...methods}>
-				<form onSubmit={methods.handleSubmit(onSubmit) }>
+			<FormProvider { ...methods }>
+				<form onSubmit={ methods.handleSubmit(onSubmit) }>
 					<OrderComponent
 						data={ newData }
 						isLoading={ isLoading }

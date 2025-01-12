@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { addToStorage, getFromStorage, removeFromStorage } from '../../lib';
@@ -9,6 +10,13 @@ import { NoResult, Spinner, Title } from '../../components/Lib';
 import { CartComponent } from '../../components/Cart';
 import { Language } from '../../models/language';
 
+const scrollToTop = () => {
+	window.scrollTo({
+		top: 0,
+		behavior: "smooth"
+	});
+};
+
 export const Cart = () => {
 	const t = useAppTranslation();
 	const dispatch = useAppDispatch();
@@ -16,14 +24,18 @@ export const Cart = () => {
 	const { lang } = useAppSelector(state => state.langReducer);
 	const { cartItems } = useAppSelector(state => state.cartReducer);
 	const path = [{ id: 1, title: t('cart', true), url: '/' }];
-	const { tires, cargo, disks, battery, autoGoods, services, isLoading} = useAppGetProducts(cartItems, true);
+	const { tires, cargo, disks, battery, isLoading} = useAppGetProducts(cartItems, 'reducerCart', true);
 	const data = {
 		result: true,
 		data: {
 			total_count: 5,
-			products: [...tires,...cargo,...disks,...battery,...autoGoods,...services]
+			products: [...tires,...cargo,...disks,...battery]
 		}
 	};
+
+	useEffect(() => {
+		scrollToTop();
+	}, []);
 
 	const removeProduct = (id: number) => {
 		removeFromStorage('reducerCart', id);
@@ -39,10 +51,10 @@ export const Cart = () => {
 
 	return <LayoutWrapper>
 		<Helmet>
-			<title>{t('cart', true)} | {settings?.['ua'].config_name}</title>
+			<title>{ t('cart', true) } | { settings?.['ua'].config_name }</title>
 		</Helmet>
-		<Breadcrumbs path={path}/>
-		<Title title='cart'/>
+		<Breadcrumbs path={ path } />
+		<Title title='cart' />
 		<Spinner height='h-40' show={ isLoading }>
 			{ cartItems.length > 0 && data?.result ? <CartComponent
 					data={ data }

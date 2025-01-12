@@ -8,7 +8,7 @@ import { FilterActive } from '../../../containers/Catalog/FilterActive';
 import { Select } from './Select';
 import { SelectFromTo } from './SelectFromTo';
 import { MySelect } from './SelectToByCar';
-import { CloseIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 import { Badge } from '../../Lib/';
 
 import { Section, Subsection } from '../../../models/filter';
@@ -127,7 +127,7 @@ export const FilterAltComponent: FC<FilterAltProps> = (
 			{'hidden': !isOpenFilter })
 	}>
 		<button onClick={ () => closeFilter() } className='absolute top-5 right-5 lg:hidden'>
-			<CloseIcon className='fill-[#B9B9BA] w-7 h-7' />
+			<Icons.CloseIcon className='fill-[#B9B9BA] w-7 h-7' />
 		</button>
 		<div className='filter h-screen lg:h-auto w-[calc(100%-70px)] lg:w-64 mr-6 pt-4 lg:pt-0 bg-white lg:bg-transparent'>
 			{section !== Section.Battery && <div className='filter-tabs grid grid-cols-2 gap-2.5 -mb-0.5'>
@@ -142,7 +142,7 @@ export const FilterAltComponent: FC<FilterAltProps> = (
 					<button
 						onClick={() => handleClick(Subsection.ByParams)}
 						className={classNames('font-bold uppercase lg:normal-case', {
-							'text-blue-500': subsection === 'byParams',
+							'text-black': subsection === 'byParams',
 							'text-gray-500': subsection !== 'byParams'
 						})}
 					>
@@ -151,7 +151,7 @@ export const FilterAltComponent: FC<FilterAltProps> = (
 					<button
 						onClick={() => handleClick(Subsection.ByCars)}
 						className={classNames('font-bold uppercase lg:normal-case', {
-							'text-blue-500': subsection === 'byCars',
+							'text-black': subsection === 'byCars',
 							'text-gray-500': subsection !== 'byCars'
 						})}
 					>

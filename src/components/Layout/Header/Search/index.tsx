@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import styles from '../HeaderCenter/index.module.scss';
 import { useAppSelector } from '../../../../hooks';
 import { Link } from '../../../../lib';
-import { SearchIcon } from '../../../Lib/Icons';
+import * as Icons from '../../../Lib/Icons';
 import { Language } from '../../../../models/language';
 import type { Data } from '../../../../models/products';
-import {CloseButton, Spinner} from "../../../Lib";
+import { CloseButton, Spinner } from "../../../Lib";
 
 interface SearchProps {
 	data: Data | undefined
@@ -33,7 +33,7 @@ export const SearchComponent: FC<SearchProps> = ({ data, placeholder, isOpen, va
 				placeholder={placeholder}
 			/>
 			<button type="submit" className="btn primary w-14 h-9">
-				<SearchIcon className='fill-black'/>
+				<Icons.SearchIcon className='fill-black'/>
 			</button>
 		</div>
 		<div className={classNames('absolute top-12 right-0 z-20 py-6 px-8 md:px-10 bg-natural-800 text-white rounded-sm w-full lg:max-w-[460px]', {'hidden': !isOpen})}>

@@ -1,6 +1,7 @@
 export { Badge } from './Badge';
 export { CloseButton } from './CloseButton';
 export { CountryInfo } from './CountryInfo';
+export { Logo } from './Logo';
 export { PhoneMaskInput, TextFile } from './MyInputs';
 export { NoResult } from './NoResult';
 export { PopularItem } from './PopularItem';

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import vodafoneLogo from '../../assets/vodafone-logo.png';
 import kievstarLogo from '../../assets/kievstar-logo.png';
@@ -13,6 +14,7 @@ const phoneLogos: Record<PhoneLogo, string> = {
 };
 
 interface ContactsProps {
+	isInfo?: boolean
 	telephones: {
 		phone: string
 		url: string
@@ -20,12 +22,12 @@ interface ContactsProps {
 	}[]
 }
 
-export const ContactsComponent: FC<ContactsProps> = ({ telephones }) => {
-	return <div className='py-1 text-white flex items-center'>
+export const ContactsComponent: FC<ContactsProps> = ({ isInfo, telephones }) => {
+	return <div className={ twMerge('py-1 text-white flex items-center', isInfo && 'text-black flex-col') }>
 		{telephones.map((item, index) => {
-			return <div key={index} className='flex items-center my-0.5 text-sm font-semibold mr-5'>
+			return <div key={index} className={ twMerge('flex items-center my-0.5 text-sm font-semibold', !isInfo && 'mr-1.5 md:mr-5') } >
 				<img src={phoneLogos[item.logo]} alt={item.logo + '-logo'}/>
-				<a href={`tel:${item.url}`} className='ml-2.5'>
+				<a href={`tel:${item.url}`} className='ml-1 md:ml-2.5'>
 					{item.phone}
 				</a>
 			</div>

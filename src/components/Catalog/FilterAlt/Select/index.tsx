@@ -2,7 +2,7 @@ import { FC, useCallback, useState, MouseEvent, ChangeEvent, useRef } from 'reac
 import classNames from 'classnames';
 
 import './index.scss';
-import { ChevronDownIcon } from '../../../Lib/Icons';
+import * as Icons from '../../../Lib/Icons';
 import { SearchInput } from './SearchInput';
 import type { Options } from '../../../../models/baseData';
 
@@ -86,7 +86,7 @@ export const Select: FC<SelectProps> = (
         <span className="block truncate">{ label }</span>
       </span>
 			<span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2.5">
-        <ChevronDownIcon className={ classNames({ 'stroke-black': variant === 'white', 'stroke-gray-500': variant === 'gray' }) } />
+        <Icons.ChevronDownIcon className={ classNames('w-3.5 h-3.5', { 'stroke-black': variant === 'white', 'stroke-gray-500': variant === 'gray' }) } />
       </span>
 		</button>
 		{ search && open && <SearchInput value={ eventSearch } handleChange={ handleChange } /> }
@@ -107,7 +107,7 @@ export const Select: FC<SelectProps> = (
 								checked={name === 'other' ? !!filterOther?.[item.value as keyof typeof filterOther] : filterValue === item.value}
 								id={`${ name }-${ item.value }`}
 								type="checkbox"
-								className="peer relative h-7 w-7 bg-white appearance-none cursor-pointer rounded-sm border border-[#A9ACB2] transition-all checked:border-blue-500 checked:bg-blue-500 hover:border-blue-500"
+								className="peer relative h-7 w-7 bg-white appearance-none cursor-pointer rounded-sm border border-[#A9ACB2] transition-all checked:border-blue-300 checked:bg-blue-300 hover:border-blue-300"
 							/>
 							<div
 								className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white peer-checked:opacity-100">

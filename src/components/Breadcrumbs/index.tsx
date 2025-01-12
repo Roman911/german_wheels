@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Link } from '../../lib';
 import { useAppDispatch } from '../../hooks';
 import { resetFilter } from '../../store/reducers/filterSlice';
-import { HomeIcon } from '../Lib/Icons';
+import * as Icons from '../Lib/Icons';
 
 interface BreadcrumbsItem {
 	id: number
@@ -26,7 +26,7 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ path }) => {
 	return <nav className='breadcrumbs'>
 		<ol className='flex overflow-auto max-w-full whitespace-nowrap'>
 			<li className='text-sm'>
-				<Link onClick={() => handleClick()} to="/"><HomeIcon className='fill-[#575C66]'/></Link>
+				<Link onClick={() => handleClick()} to="/"><Icons.HomeIcon className='fill-[#575C66]'/></Link>
 			</li>
 			{path.map((item, index) => {
 				if(!item.url) return null;

@@ -9,7 +9,7 @@ export const typeCatLinks = [
 		label: 'SUVs',
 		to: '/catalog/tires/vt-2',
 		icon: 'suv',
-		iconStyles: 'stroke-gray-500 group-hover:stroke-blue-500',
+		iconStyles: 'stroke-gray-500 group-hover:stroke-blue-200',
 		iconStylesActive: 'stroke-blue-500',
 		vehicleType: ['2'],
 	},

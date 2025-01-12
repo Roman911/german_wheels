@@ -1,9 +1,19 @@
-import React from 'react';
+import { SVGProps } from 'react';
 
-import type { IconProps } from '../../../models/icon';
-
-export const ChevronDownIcon: React.FC<IconProps> = ({ className = 'stroke-black' }) => {
-	return <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none" className={ className }>
-		<path d="M1 2.75L5 6.75L9 2.75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+const ChevronDownIcon = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width="24px"
+		height="24px"
+		fill="none"
+		stroke="currentColor"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth={ 2 }
+		viewBox="0 0 24 24"
+		{ ...props }
+	>
+		<path xmlns="http://www.w3.org/2000/svg" d="M2.3999 6.59998L11.9999 16.2L21.5999 6.59998" />
 	</svg>
-}
+);
+
+export default ChevronDownIcon;

@@ -5,10 +5,9 @@ import styles from './index.module.scss';
 import { useAppSelector, useAppTranslation } from '../../../../hooks';
 import { Link } from '../../../../lib';
 import { Search } from '../../../../containers/Layout/Header/Search';
-import { Badge } from '../../../Lib';
+import { Badge, Logo } from '../../../Lib';
 
-import logo from '../../../../assets/logo.svg';
-import { CartIcon, ChevronDownIcon, CloseMenuIcon, HeartIcon, LibraIcon, MenuIcon } from '../../../Lib/Icons';
+import * as Icons from '../../../Lib/Icons';
 import { HeaderMenu } from './Menu';
 import { CarTireFilter } from './Menu/CarTireFilter';
 import { CarDiskFilter } from './Menu/CarDiskFilter';
@@ -41,43 +40,43 @@ export const HeaderCenter = () => {
 	}
 
 	return <div className={twMerge('bg-zinc-800 relative', styles['header-center'])}>
-		<div
-			className={twMerge('container mx-auto grid items-center py-3 px-4 grid-cols-2 lg:grid-cols-[200px_auto_400px_150px]', styles.container)}>
-			<Link to='/' className='logo w-40 lg:w-auto'>
-				<img src={logo} className="logo" alt="logo"/>
-			</Link>
+		<div className={
+			twMerge('container mx-auto grid items-center py-3 px-4 grid-cols-2 lg:grid-cols-[180px_auto_400px_150px]',
+				styles.container)
+		}>
+			<Logo />
 			<HeaderMenu />
 			<Search />
-			<div className={twMerge('flex gap-4 md:gap-7 justify-end', styles.menu)}>
+			<div className={twMerge('flex gap-4 md:gap-7 justify-end pr-2.5', styles.menu)}>
 				<Link to='/comparison' className='relative'>
 					{ comparisonItems.length > 0 && <Badge value={ comparisonItems.length } /> }
-					<LibraIcon className='fill-white' />
+					<Icons.LibraIcon className='fill-white' />
 				</Link>
 				<Link to='/bookmarks' className='relative'>
 					{ bookmarksItems.length > 0 && <Badge value={ bookmarksItems.length } /> }
-					<HeartIcon className='stroke-white' />
+					<Icons.HeartIcon className='stroke-white' />
 				</Link>
 				<Link to='/cart' className='relative'>
 					{ cartItems.length > 0 && <Badge value={ cartItems.length } /> }
-					<CartIcon className='stroke-white' />
+					<Icons.CartIcon className='stroke-white' />
 				</Link>
 				<button onClick={() => setOpenMenu(prev => !prev)} className='lg:hidden'>
-					{ openMenu ? <CloseMenuIcon className='fill-white' /> : <MenuIcon className='fill-white'/> }
+					{ openMenu ? <Icons.CloseIcon className='stroke-white' /> : <Icons.MenuIcon className='fill-white'/> }
 				</button>
 			</div>
 		</div>
-		<div className={ twMerge('absolute top-28 bg-white w-full divide-y divide-[#E6E9EB] border-t border-b border-[#E6E9EB] z-50 lg:hidden', !openMenu && 'hidden') }>
+		<div className={ twMerge('absolute top-36 text-white bg-zinc-900 w-full divide-y divide-natural-600 border-t border-b border-natural-600 z-50 lg:hidden', !openMenu && 'hidden') }>
 			<div className='py-5'>
 				<button onClick={() => handleClick('tires')}
-								className={twMerge('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-500', filterIsOpen === 'tires' && 'text-blue-500')}>
+								className={twMerge('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-300', filterIsOpen === 'tires' && 'text-blue-300')}>
 					<span>{ t('cartires') }</span>
 					<span className={twMerge('transition', filterIsOpen === 'tires' && 'rotate-180')}>
-						<ChevronDownIcon
-							className={twMerge('stroke-black transition group-hover:stroke-blue-500', filterIsOpen === 'tires' && 'stroke-blue-500')}/>
+						<Icons.ChevronDownIcon
+							className={twMerge('stroke-white transition group-hover:stroke-blue-300', filterIsOpen === 'tires' && 'stroke-blue-300')}/>
 					</span>
 				</button>
 				{ filterIsOpen === 'tires' &&
-					<div className='mt-5 px-5 py-5 border-t border-[#E6E9EB] bg-[#FAFAFC] grid grid-cols-2'>
+					<div className='mt-5 px-5 py-5 border-t border-natural-600 bg-zinc-900 grid grid-cols-2'>
 						<CarTireFilter closeFilter={ closeFilter } />
 					</div>
 				}
@@ -86,18 +85,18 @@ export const HeaderCenter = () => {
 					<button
 						onClick={() => handleClick('disks')}
 						className={
-						twMerge('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-500',
-							filterIsOpen === 'disks' && 'text-blue-500'
+						twMerge('px-5 w-full flex items-center justify-between uppercase font-bold group transition hover:text-blue-300',
+							filterIsOpen === 'disks' && 'text-blue-300'
 						)}
 					>
 					<span>Автодиски</span>
 					<span className={twMerge('transition', filterIsOpen === 'disks' && 'rotate-180')}>
-						<ChevronDownIcon
-							className={twMerge('stroke-black transition group-hover:stroke-blue-500', filterIsOpen === 'disks' && 'stroke-blue-500')}/>
+						<Icons.ChevronDownIcon
+							className={twMerge('stroke-white transition group-hover:stroke-blue-300', filterIsOpen === 'disks' && 'stroke-blue-300')}/>
 					</span>
 				</button>
 				{ filterIsOpen === 'disks' &&
-					<div className='mt-5 px-5 py-5 border-t border-[#E6E9EB] bg-[#FAFAFC] grid grid-cols-2'>
+					<div className='mt-5 px-5 py-5 border-t border-natural-600 bg-zinc-900 grid grid-cols-2'>
 						<CarDiskFilter closeFilter={ closeFilter } />
 					</div>
 				}

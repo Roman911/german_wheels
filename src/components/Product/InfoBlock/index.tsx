@@ -1,9 +1,8 @@
 import { Link } from '../../../lib';
 import { useAppSelector, useAppTranslation } from '../../../hooks';
-import { OurAdvantages } from '../../Home';
 import { Contacts } from '../../../containers/Contacts';
 
-import { EmailIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 
 import deliveryIcon from '../../../assets/icons/delivery-icon.svg';
 import paymentIcon from '../../../assets/icons/payment-icon.svg';
@@ -16,10 +15,9 @@ export const InfoBlock = () => {
 
 	return <div className='lg:w-64'>
 		<div className=' bg-white rounded-2xl px-5 py-7'>
-			<div className='font-bold'>{lang === 'ua' ? 'Замовляйте за номерами:' : 'Заказывайте по номерам:'}</div>
-			<Contacts isInfoBlock={ true } />
+			<Contacts isInfo={ true } />
 			<div className='flex items-center gap-x-2.5 mt-5'>
-				<EmailIcon/>
+				<Icons.EmailIcon/>
 				<a href={`mailto:${settings.ua.config_email}`} className='ml-2.5 font-bold'>
 					{settings.ua.config_email}
 				</a>
@@ -40,6 +38,5 @@ export const InfoBlock = () => {
 				<span className='group-hover:underline'>{t('warranty and returns', true)}</span>
 			</Link>
 		</div>
-		<OurAdvantages size='small'/>
 	</div>
 }

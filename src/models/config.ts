@@ -6,6 +6,7 @@ interface SocialItem {
 }
 
 export interface Config {
+	domain: string
 	startYear: number
 	social: {
 		links: SocialItem[]

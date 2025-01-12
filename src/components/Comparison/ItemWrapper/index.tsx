@@ -5,7 +5,7 @@ import { Link } from '../../../lib';
 import { useAppTranslation } from '../../../hooks';
 import { CloseButton } from '../../Lib';
 import { Characteristics } from '../Characteristics';
-import { CartIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 
 interface ItemWrapperProps {
 	characteristics: Product[]
@@ -48,7 +48,7 @@ export const ItemWrapper: FC<ItemWrapperProps> = (
 				<Characteristics name={ name } item={ item } />
 				<div className='pt-8 pb-14'>
 					<Link to={ `/cart` } onClick={() => onClick(item.best_offer.id, tab)} className='btn primary uppercase w-full md:w-52 mx-auto'>
-						<CartIcon className='stroke-white'/>
+						<Icons.CartIcon className='stroke-white'/>
 						<span className='ml-2.5'>{t('buy')}</span>
 					</Link>
 				</div>

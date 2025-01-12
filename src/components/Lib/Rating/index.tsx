@@ -23,10 +23,12 @@ export const Rating: FC<RatingProps> = ({ commentsAvgRate, commentsCount, size =
 	const showRate = Math.max(avgRate, commentsAvgRate);
 
 	const handleClick = (id: number) => {
-		setRate && setRate(id);
+		if (setRate) {
+			setRate(id);
+		}
 	}
 
-	return <div className='flex items-center h-6'>
+	return <div className='flex items-center justify-center h-6'>
 		<div className='flex'>
 			{params.map(item => (
 				<svg

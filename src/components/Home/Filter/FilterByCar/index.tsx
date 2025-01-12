@@ -25,19 +25,19 @@ export const FilterByCarComponents: FC<FilterByCarProps> = ({ disabled, filters,
 		return <Link
 			to={ `/catalog/${ type }` }
 			onClick={ onClick }
-			className={classNames('btn secondary w-full md:w-56 uppercase', { 'pointer-events-none opacity-60': disabled })}
+			className={classNames('btn primary w-full md:w-56 uppercase', { 'pointer-events-none': disabled })}
 		>
 			{ t(title) }
 		</Link>
 	}
 
 	return <>
-		<div className='grid grid-cols-1 md:grid-cols-2 gap-2.5 md:mt-7'>
+		<div className='grid grid-cols-1 md:grid-cols-4 gap-2.5 md:mt-7'>
 			{filters.map(item => {
 				return <MySelect key={item.name} name={item.name} label={item.label} options={item.options} onChange={onChange} isDisabled={item.isDisabled} />
 			})}
 		</div>
-		<div className='mt-4 md:mt-10 flex gap-4 flex-col md:flex-row'>
+		<div className='mt-4 md:mt-10 flex gap-4 flex-col md:flex-row justify-center'>
 			{ renderLink('tires', 'choose tires') }
 			{ renderLink('disk', 'choose disks') }
 		</div>

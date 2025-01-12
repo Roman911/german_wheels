@@ -9,8 +9,7 @@ import { LayoutWrapper } from '../../components/Layout';
 import { Filter } from './Filter';
 import { ProductList } from '../ProductList';
 import { Carousel } from './Carousel';
-import { PopularBlock } from './PopularBlock';
-import { OurAdvantages, ShowAll, TextSeo } from '../../components/Home';
+import { ShowAll, TextSeo } from '../../components/Home';
 import { NoResult, Spinner, Title } from '../../components/Lib';
 import { Language } from '../../models/language';
 
@@ -42,8 +41,6 @@ export const Home = () => {
 			</Spinner>
 			<ShowAll />
 			<Carousel />
-			<OurAdvantages />
-			<PopularBlock />
 			<TextSeo />
 		</LayoutWrapper>
 	</main>

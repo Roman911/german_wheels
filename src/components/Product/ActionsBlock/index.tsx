@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FacebookShareButton, TelegramShareButton, ViberShareButton, TwitterShareButton, EmailShareButton } from 'react-share';
 import classNames from 'classnames';
 
-import { HeartIcon, LibraIcon, MailIcon, PhoneCircuitIcon, ShareIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 
 interface ActionsBlockProps {
 	className: string
@@ -18,13 +18,13 @@ export const ActionsBlockComponent: FC<ActionsBlockProps> = ({ className, isBook
 
 	return <div className={ classNames('gap-1.5 xl:gap-2.5 h-full', className) }>
 		<button onClick={() => openModal('Callback')} className='p-3 bg-blue-50 rounded-full group'>
-			<PhoneCircuitIcon className='stroke-gray-500 group-hover:stroke-blue-500'/>
+			<Icons.PhoneCircuitIcon className='stroke-gray-500 group-hover:stroke-blue-500'/>
 		</button>
 		<button onClick={() => openModal('AddAsk')} className='p-3 bg-blue-50 rounded-full group'>
-			<MailIcon className='stroke-gray-500 group-hover:stroke-blue-500'/>
+			<Icons.MailIcon className='stroke-gray-500 group-hover:stroke-blue-500'/>
 		</button>
 		<div className='p-3 bg-blue-50 rounded-full group cursor-pointer relative'>
-			<ShareIcon className='fill-gray-500 group-hover:fill-blue-500'/>
+			<Icons.ShareIcon className='fill-gray-500 group-hover:fill-blue-500'/>
 			<div className='absolute top-10 left-0 bg-white rounded shadow-md py-4 px-6 hidden group-hover:block'>
 				<FacebookShareButton url={ url } className='flex items-center gap-x-2'>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className='fill-blue-500 w-5'>
@@ -81,13 +81,13 @@ export const ActionsBlockComponent: FC<ActionsBlockProps> = ({ className, isBook
 			</div>
 		</div>
 		<button onClick={() => handleClickBookmarks()} className='p-3 bg-blue-50 rounded-full group'>
-			<HeartIcon className={classNames('group-hover:stroke-blue-500 w-4 h-4', {
+			<Icons.HeartIcon className={classNames('group-hover:stroke-blue-500 w-4 h-4', {
 				'stroke-blue-500 fill-blue-500': isBookmarks,
 				'stroke-gray-500': !isBookmarks
 			})}/>
 		</button>
 		<button onClick={() => handleClickComparison()} className='p-3 bg-blue-50 rounded-full group'>
-			<LibraIcon
+			<Icons.LibraIcon
 				className={classNames('group-hover:fill-blue-500 w-4 h-4', {
 					'fill-blue-500': isComparison,
 					'fill-gray-500': !isComparison

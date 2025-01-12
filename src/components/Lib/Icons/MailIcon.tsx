@@ -1,14 +1,23 @@
-import React from 'react';
+import { SVGProps } from 'react';
 
-import type { IconProps } from '../../../models/icon';
-
-export const MailIcon: React.FC<IconProps> = ({ className = 'stroke-black' }) => {
-	return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className={ className }>
+const MailIcon = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		width="24px"
+		height="24px"
+		fill="none"
+		strokeWidth='1.2'
+		strokeLinecap='round'
+		strokeLinejoin='round'
+		viewBox="0 0 24 24"
+		{ ...props }
+	>
 		<path
-			d="M13.6 3H2.4C1.6268 3 1 3.61561 1 4.375V12.625C1 13.3844 1.6268 14 2.4 14H13.6C14.3732 14 15 13.3844 15 12.625V4.375C15 3.61561 14.3732 3 13.6 3Z"
-			strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+			d="M20.4 4.5H3.6C2.4402 4.5 1.5 5.42341 1.5 6.5625V18.9375C1.5 20.0766 2.4402 21 3.6 21H20.4C21.5598 21 22.5 20.0766 22.5 18.9375V6.5625C22.5 5.42341 21.5598 4.5 20.4 4.5Z"
+		/>
 		<path
-			d="M15 5.0625L8.721 8.98125C8.50489 9.11423 8.25502 9.18476 8 9.18476C7.74498 9.18476 7.49511 9.11423 7.279 8.98125L1 5.0625"
-			strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+			d="M22.5 7.59375L13.0815 13.4719C12.7573 13.6713 12.3825 13.7771 12 13.7771C11.6175 13.7771 11.2427 13.6713 10.9185 13.4719L1.5 7.59375"
+		/>
 	</svg>
-}
+);
+
+export default MailIcon;

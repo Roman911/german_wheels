@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { FilterIcon } from '../../../Lib/Icons';
+import * as Icons from '../../../Lib/Icons';
 
 interface FilterBtnProps {
 	openFilter: () => void
@@ -12,7 +12,7 @@ export const FilterBtn: FC<FilterBtnProps> = ({ openFilter, title }) => {
 		onClick={() => openFilter()}
 		className='lg:hidden flex items-center font-bold gap-x-2.5'
 	>
-		<FilterIcon/>
+		<Icons.FilterIcon/>
 		{ title }
 	</button>
 };

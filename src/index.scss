@@ -3,48 +3,45 @@
 @tailwind utilities;
 
 @layer base {
-	@font-face {
-		font-family: 'Gilroy';
-		font-style: normal;
-		font-weight: 400;
-		font-display: swap;
-		src: url(/assets/fonts/Gilroy-Regular.eot) format('embedded-opentype'),
-		url(/assets/fonts/Gilroy-Regular.ttf) format('truetype'),
-		url(/assets/fonts/Gilroy-Regular.woff) format('woff'),
-		url(/assets/fonts/Gilroy-Regular.woff2) format('woff2');
-	}
+  html {
+    font-family: "Gilroy", sans-serif;
+  }
 
-	html {
-		font-family: "Gilroy", sans-serif;
-	}
+  body {
+    @apply text-black bg-slate-100;
+  }
 
-	body {
-		@apply text-black bg-slate-100;
-	}
+  input {
+    outline: none;
+  }
 
-	input {
-		outline: none;
-	}
+  .icon {
+    @apply text-2xl;
+  }
 }
 
 @layer components {
-	.btn {
-		@apply h-12 rounded-sm font-bold w-72 flex justify-center items-center transition-all;
-	}
+  .btn {
+    @apply h-12 rounded-sm font-bold w-72 flex justify-center items-center transition-all;
+  }
 
-	.primary {
-		@apply bg-blue-200 text-black hover:bg-blue-300 transition disabled:bg-gray-300;
-	}
+  .primary {
+    @apply bg-blue-200 text-black hover:bg-blue-300 transition disabled:bg-gray-300;
+  }
 
-	.secondary {
-		@apply bg-white hover:bg-blue-200 transition;
-	}
+  .secondary {
+    @apply bg-white hover:bg-blue-200 transition;
+  }
 
-	.success {
-		@apply bg-green-500 text-white hover:bg-green-600 transition;
-	}
+  .success {
+    @apply bg-green-500 text-white hover:bg-green-600 transition;
+  }
 
-	.small {
-		@apply w-20;
-	}
+  .black {
+    @apply bg-black text-white;
+  }
+
+  .small {
+    @apply w-20;
+  }
 }

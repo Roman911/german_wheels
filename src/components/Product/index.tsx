@@ -9,7 +9,7 @@ import { ImgGallery } from './ImageGallery';
 import { CharacteristicsBlock } from './CharacteristicsBlock';
 import { countryCodeTransform, Link, SeasonTransform, VehicleTypeTransform } from '../../lib';
 import { CountryInfo, Quantity, Rating, Spinner } from '../Lib';
-import { CartIcon, MarkerIcon, BusIcon, CargoIcon, CarIcon, MotorcyclesIcon, SpecialEquipmentIcon, SuvIcon } from "../Lib/Icons";
+import * as Icons from '../Lib/Icons';
 import truckIcon from '../../assets/icons/truck-icon.svg';
 import { Language } from '../../models/language';
 import { Section } from '../../models/filter';
@@ -18,13 +18,13 @@ import type { ProductProps } from '../../models/product';
 import noPhoto from '../../assets/no-photo.jpg';
 import noPhotoRu from '../../assets/no-photo-ru.jpg';
 
-const Icons = {
-	light: CarIcon,
-	bus: BusIcon,
-	cargo: CargoIcon,
-	motorcycle: MotorcyclesIcon,
-	special: SpecialEquipmentIcon,
-	suv: SuvIcon,
+const IconsObj = {
+	light: Icons.CarIcon,
+	bus: Icons.BusIcon,
+	cargo: Icons.CargoIcon,
+	motorcycle: Icons.MotorcyclesIcon,
+	special: Icons.SpecialEquipmentIcon,
+	suv: Icons.SuvIcon,
 };
 
 interface ProductComponentProps {
@@ -58,7 +58,7 @@ export const ProductComponent: FC<ProductComponentProps> = (
 	const t = useAppTranslation();
 	const vehicleType = data?.data.offer_group.vehicle_type;
 	const vehicleTransform = vehicleType ? VehicleTypeTransform(vehicleType) : undefined;
-	const IconComponent = vehicleTransform ? Icons[vehicleTransform.icon] : undefined;
+	const IconComponent = vehicleTransform ? IconsObj[vehicleTransform.icon] : undefined;
 
 	const { id = 0, full_name = '', offers = [], min_price = 0, photo, model, labels } = data?.data || {};
 	const offer = offers.find(item => item.offer_id === offerId);
@@ -116,7 +116,7 @@ export const ProductComponent: FC<ProductComponentProps> = (
 						<div className='flex-1 md:ml-6 xl:ml-10'>
 							<h1 className='text-2xl font-bold mt-8 md:mt-0'>{ full_name }</h1>
 							<div className='flex mt-5 items-center'>
-								<div className='text-[15px] text-gray-500 bg-blue-50 rounded-full py-1 md:py-2 px-3 mr-5'>Артикул: { id }</div>
+								<div className='text-[15px] text-gray-500 bg-blue-50 rounded-2 py-1 md:py-1 px-3 mr-5'>Артикул: { id }</div>
 								<Rating
 									commentsCount={ review ? (review.length > 0 ? review.length : undefined) : undefined }
 									commentsAvgRate={ averageScore || 0 }
@@ -140,15 +140,11 @@ export const ProductComponent: FC<ProductComponentProps> = (
 									return <div key={item.offer_id} onClick={() => handleClick(item.offer_id)} className='offers__item cursor-pointer grid md:grid-cols-9 gap-1 md:gap-4 items-center mt-3 py-1.5 md:py-0 px-2 md:px-0 bg-white md:bg-transparent border md:border-0 rounded-full'>
 										<div className='input flex flex-row md:col-span-2 relative'>
 											<input type="checkbox" onChange={() => handleClick(item.offer_id)} checked={item.offer_id === offerId} className='appearance-none h-6 w-6 bg-white rounded-full border border-zinc-400 hover:border-blue-500 checked:border-blue-500 transition-all duration-200 peer'/>
-											<div className='h-4 w-4 absolute inset-1 rounded-full peer-checked:border-blue-500 peer-checked:bg-blue-500'/>
+											<div className='h-4 w-4 absolute inset-1 rounded-full peer-checked:border-[#02967D] peer-checked:bg-[#02967D]'/>
 											<label className='flex ml-1.5 md:ml-7 flex-col justify-center text-sm font-medium cursor-pointer'>{item.quantity} шт.</label>
 										</div>
 										<div className='country md:col-span-3'>
 											<CountryInfo country={ lang === Language.UA ? item.country : item.country_ru } countryCode={ countryCodeTransform(item.country) } year={ item.year } mobileHidden={ true } />
-										</div>
-										<div className='storage md:col-span-2 text-sm content-center flex items-center gap-x-1 md:gap-x-2'>
-											<MarkerIcon className='fill-gray-400 w-3' />
-											{ lang === Language.UA ? item.posts.city : item.posts.city_ru }
 										</div>
 										<div className='price md:col-span-2 md:text-sm font-bold content-center'>
 											{ item.price } грн
@@ -173,17 +169,12 @@ export const ProductComponent: FC<ProductComponentProps> = (
 							<span className='ml-2.5'>{ lang === Language.UA ? 'Перейти до кошика' : 'Перейти в корзину' }</span>
 						</Link> :
 						<button onClick={() => onSubmit()} className='btn primary uppercase w-full md:w-72'>
-							<CartIcon className='stroke-white'/>
 							<span className='ml-2.5'>{t('buy')}</span>
 						</button>
 					}
 					<button onClick={() => handleModalOpen('QuickOrder')}
 									className='btn secondary uppercase mt-2.5 w-full md:w-72'>
 						<span className='ml-2.5'>{t('quick order')}</span>
-					</button>
-					<button onClick={() => handleModalOpen('OnlineInstallment')}
-									className='btn success uppercase mt-2.5 w-full md:w-72'>
-						<span className='ml-2.5'>{t('installment plan')}</span>
 					</button>
 				</div>
 			</div>

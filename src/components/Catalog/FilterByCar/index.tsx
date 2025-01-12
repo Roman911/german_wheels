@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useAppSelector, useAppTranslation } from '../../../hooks';
 
 import { TypeCarLinks } from '../../Lib/TypeCarLinks';
-import { ChevronDownIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 import { FilterBtn } from './FilterBtn';
 import { Section } from '../../../models/filter';
 
@@ -43,7 +43,7 @@ export const FilterByCar: FC<FilterByCarProps> = ({ openFilter, handleClick }) =
 							id="menu-button" aria-expanded="true" aria-haspopup="true">
 				<div>{t(sort, true)}</div>
 				<div className={classNames('transition-transform', {'rotate-180': openSort})}>
-					<ChevronDownIcon/>
+					<Icons.ChevronDownIcon className='h-3.5 w-3.5' />
 				</div>
 			</button>
 			<div

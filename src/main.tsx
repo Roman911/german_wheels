@@ -8,6 +8,7 @@ import { setupStore } from './store/store'
 
 const store = setupStore();
 
+import './assets/fonts/stylesheet.css';
 import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

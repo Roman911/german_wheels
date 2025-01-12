@@ -5,13 +5,13 @@ import { baseDataAPI } from '../../../services/baseDataService';
 import { useAppSelector, useAppTranslation } from '../../../hooks';
 import { linksCatalog } from './linksCatalog';
 import { PhoneLogo } from '../../../models/config';
-import { EmailIcon, FacebookIcon, TelegramIcon, ViberIcon } from '../../Lib/Icons';
+import * as Icons from '../../Lib/Icons';
 import { AliasItem } from '../../../models/alias';
 
-import footerLogo from '../../../assets/footer-logo.svg';
 import kievstarLogo from '../../../assets/kievstar-logo.png';
 import lifecellLogo from '../../../assets/life-logo.png';
 import vodafoneLogo from '../../../assets/vodafone-logo.png';
+import { Logo } from '../../Lib';
 
 type IconType = 'telegram' | 'facebook' | 'viber';
 
@@ -28,9 +28,9 @@ export const Footer = () => {
 	const t = useAppTranslation();
 
 	const icons: Record<IconType, JSX.Element> = {
-		telegram: <TelegramIcon className='fill-black group-hover:fill-white' />,
-		facebook: <FacebookIcon className='fill-black group-hover:fill-white' />,
-		viber: <ViberIcon className='fill-black group-hover:fill-white' />,
+		telegram: <Icons.TelegramIcon className='fill-black group-hover:fill-white' />,
+		facebook: <Icons.FacebookIcon className='fill-black group-hover:fill-white' />,
+		viber: <Icons.ViberIcon className='fill-black group-hover:fill-white' />,
 	};
 
 	const link = (link: string, title: string, index: number) => {
@@ -40,7 +40,6 @@ export const Footer = () => {
 	}
 
 	const telephones: { phone: string; url: string; logo: "vodafone" | "kievstar" | "lifecell"; }[] = [
-		{ phone: settings[lang].config_telephone_vodafone, url: settings[lang].config_telephone_vodafone_url, logo: 'vodafone' },
 		{ phone: settings[lang].config_telephone_kievstar, url: settings[lang].config_telephone_kievstar_url, logo: 'kievstar' },
 		{ phone: settings[lang].config_telephone_life, url: settings[lang].config_telephone_life_url, logo: 'lifecell' },
 	];
@@ -60,7 +59,7 @@ export const Footer = () => {
 					</div>
 				})}
 				<div className='flex items-center mt-5'>
-					<EmailIcon className='fill-white'/>
+					<Icons.EmailIcon className='fill-white'/>
 					<a href={`mailto:${settings[lang].config_email}`} className='ml-2.5 text-sm text-white'>
 						{settings[lang].config_email}
 					</a>
@@ -107,9 +106,7 @@ export const Footer = () => {
 					© {settings[lang].config_name} {new Date().getFullYear()}.<br/>
 					{lang === 'ua' ? 'Всі права захищені.' : 'Все права защищены.'}
 				</p>
-				<Link to='/'>
-					<img src={footerLogo} alt="logo"/>
-				</Link>
+				<Logo isFooter={ true } />
 			</div>
 		</div>
 	</footer>
