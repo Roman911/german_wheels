@@ -7,7 +7,7 @@ import { reset as resetComparison } from '../../store/reducers/comparisonSlice';
 
 export const FlushCache = () => {
 	const dispatch = useAppDispatch();
-	
+
 	useEffect(() => {
 		dispatch(resetBookmarks());
 		dispatch(resetCart());

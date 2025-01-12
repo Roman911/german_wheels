@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
+import { config } from '../../config';
 import { addToStorage, getFromStorage, removeFromStorage, resetStorage } from '../../lib';
 import { useAppGetProducts, useAppDispatch, useAppSelector, useAppTranslation } from '../../hooks';
 import { removeComparison, reset } from '../../store/reducers/comparisonSlice';
@@ -14,10 +15,9 @@ export const Comparison = () => {
 	const dispatch = useAppDispatch();
 	const t = useAppTranslation();
 	const { lang } = useAppSelector(state => state.langReducer);
-	const { settings } = useAppSelector(state => state.settingsReducer);
 	const noDataText = lang === Language.UA ? 'Ви ще не додали в обране жодного товару' : 'Вы еще не добавили в избранное ни одного товара';
 	const { comparisonItems } = useAppSelector(state => state.comparisonReducer);
-	const { tires, cargo, disks, battery, isLoading} = useAppGetProducts(comparisonItems);
+	const { tires, cargo, disks, battery, isLoading} = useAppGetProducts(comparisonItems, 'reducerComparison');
 
 	const path = [
 		{
@@ -46,11 +46,10 @@ export const Comparison = () => {
 
 	return <LayoutWrapper >
 		<Helmet>
-			<title>{t('comparison', true)} | {settings.ua.config_name}</title>
-			<meta name='description' content={`${t('comparison', true)}} | ${settings.ua.config_name}`}/>
+			<title>{ t('comparison', true) } | { config.domain }</title>
 		</Helmet>
-		<Breadcrumbs path={path}/>
-		<Title title='comparison'/>
+		<Breadcrumbs path={ path } />
+		<Title title='comparison' />
 		{comparisonItems.length > 0 ? <Spinner height='h-40' show={ isLoading } >
 			<ComparisonComponent
 				defaultTab={ tires.length > 0 ? 'tires' : cargo.length > 0 ? 'cargo' : disks.length > 0 ? 'disks' : 'battery' }
