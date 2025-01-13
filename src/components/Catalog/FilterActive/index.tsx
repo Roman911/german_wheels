@@ -37,8 +37,8 @@ export const FilterActiveComponent: FC<FilterActiveProps> = (
 		return (
 			<div key={name} className="p-1 bg-[#393939] text-white text-sm font-medium rounded-full flex items-center gap-1">
 				<span className="ml-1.5">{label}</span>
-				<button onClick={() => clearParam(name)}>
-					<Icons.CloseIcon className="fill-[#A8AFB6]" />
+				<button onClick={() => clearParam(name)} className='bg-[#A8AFB6] rounded-full p-1'>
+					<Icons.CloseIcon className="stroke-[#393939] h-3 w-3" />
 				</button>
 			</div>
 		);
@@ -125,7 +125,9 @@ export const FilterActiveComponent: FC<FilterActiveProps> = (
 		})}
 		{searchParams && Object.keys(searchParams).length !== 0 && <button onClick={() => clearAllParams()} className='flex items-center gap-2 text-sm font-medium group text-gray-500'>
 			{t('reset everything', true)}
-			<Icons.CloseIcon className='fill-[#B9B9BA] hidden lg:block'/>
+			<span className='bg-[#B9B9BA] rounded-full p-1.5 hidden lg:block'>
+				<Icons.CloseIcon className='stroke-white h-3 w-3'/>
+			</span>
 		</button>}
 	</div>
 };

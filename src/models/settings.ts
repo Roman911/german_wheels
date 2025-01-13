@@ -14,9 +14,13 @@ interface SettingsItems {
 	config_address: string | null
 	config_open: string
 	config_telephones: string | null
+	h2_popular_auto: string
+	h2_popular_tyre: string
+	h2_top: string
 	meta_title: string
 	meta_description: string
 	config_punct: string
+	kredit: string
 }
 
 export interface SettingsProps {

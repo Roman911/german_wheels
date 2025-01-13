@@ -23,9 +23,13 @@ const items = {
 	config_address: null,
 	config_open: '',
 	config_telephones: null,
+	h2_popular_auto: '',
+	h2_popular_tyre: '',
+	h2_top: '',
 	meta_title: '',
 	meta_description: '',
 	config_punct: '',
+	kredit: '',
 }
 
 const initialState: RootParamsProps = {

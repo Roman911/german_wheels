@@ -15,7 +15,6 @@ import { DeliveryCalculation } from '../Modals/DeliveryCalculation';
 import { OnlineInstallment } from '../../components/Modals';
 import { LayoutWrapper } from '../../components/Layout';
 import { ProductComponent } from '../../components/Product';
-import { TextSeo } from '../../components/Home';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Section } from '../../models/filter';
 import { SimilarProducts } from './SimilarProducts';
@@ -161,7 +160,6 @@ export const Product = () => {
 			<SimilarProducts id={ id.join('&') } />
 			<RecentlyViewed />
 		</div>
-		<TextSeo />
 		{isModalActive && (
 			<Modal onClose={ handleModalClose } size={modalType === 'OnlineInstallment' ? 'max-w-6xl' : 'sm:max-w-lg'}>
 				{ modalType === 'QuickOrder' &&

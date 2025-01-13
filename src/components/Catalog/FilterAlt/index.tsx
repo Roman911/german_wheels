@@ -9,7 +9,6 @@ import { Select } from './Select';
 import { SelectFromTo } from './SelectFromTo';
 import { MySelect } from './SelectToByCar';
 import * as Icons from '../../Lib/Icons';
-import { Badge } from '../../Lib/';
 
 import { Section, Subsection } from '../../../models/filter';
 import { SubmitFloat } from './SubmitFloat';
@@ -101,7 +100,6 @@ export const FilterAltComponent: FC<FilterAltProps> = (
 				valueStudded={ valueStudded }
 				filterOther={ filterOther }
 			/>
-			{ value && <Badge value={ 1 } className='-left-2' />}
 		</div>
 	);
 

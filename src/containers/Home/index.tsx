@@ -30,7 +30,7 @@ export const Home = () => {
 		</Helmet>
 		<Filter />
 		<LayoutWrapper homePage={ true }>
-			<Title title='ТОП 10 популярних літніх шин 2024 року' />
+			<Title title={ settings[lang].h2_top } />
 			<Spinner height='h-40' show={ isLoading } size='large'>
 				{data?.result ? <ProductList
 					classnames='grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5'

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { baseDataAPI } from '../../../services/baseDataService';
@@ -7,30 +7,14 @@ import { FilterComponent } from '../../../components/Home';
 import { Section } from '../../../models/filter';
 import { Language } from '../../../models/language';
 import { generateUrl } from '../../Catalog/seo';
-import { IFilter } from '../../Catalog/seoType';
 
 export const Filter = () => {
-	const [filter, setFilter] = useState<IFilter>({});
-	const [params, setParams] = useState('');
+	const [filter, setFilter] = useState({});
 	const navigate = useNavigate();
-	const { section } = useAppSelector(state => state.filterReducer);
 	const { data } = baseDataAPI.useFetchBaseDataQuery('');
-	const { data: fildterData } = baseDataAPI.useFildterDataQuery(`?typeproduct=${section === Section.Tires ? 1 : 3}&${params}`);
+	const { section } = useAppSelector(state => state.filterReducer);
 	const { lang } = useAppSelector(state => state.langReducer);
 	const t = useAppTranslation();
-
-	useEffect(() => {
-		setFilter({});
-	}, [section]);
-
-	useEffect(() => {
-		const params = [];
-		if (filter.width) params.push(`width=${filter.width}`);
-		if (filter.height) params.push(`height=${filter.height}`);
-		if (filter.radius) params.push(`radius=${filter.radius}`);
-		if (filter.krepeg) params.push(`krip=${filter.krepeg}`);
-		setParams(params.join('&'));
-	}, [filter]);
 
 	const getFilters = () => {
 		const filterConfigs = [];
@@ -40,21 +24,21 @@ export const Filter = () => {
 				label: t('width', true),
 				name: 'width',
 				focusValue: '175',
-				options: fildterData?.tyre_width?.map(item => ({ value: item.value, label: item.value, p: item.p }))
+				options: data?.tyre_width?.map(item => ({ value: item.value, label: item.value, p: item.p }))
 			});
 
 			filterConfigs.push({
 				label: t('height', true),
 				name: 'height',
 				focusValue: '45',
-				options: fildterData?.tyre_height?.map(item => ({ value: item.value, label: item.value, p: item.p }))
+				options: data?.tyre_height?.map(item => ({ value: item.value, label: item.value, p: item.p }))
 			});
 
 			filterConfigs.push({
 				label: t('diameter', true),
 				name: 'radius',
 				focusValue: `R${14}`,
-				options: fildterData?.tyre_diameter?.map(item => ({ value: item.value, label: `R${item.value}`, p: item.p }))
+				options: data?.tyre_diameter?.map(item => ({ value: item.value, label: `R${item.value}`, p: item.p }))
 			});
 
 			filterConfigs.push({
@@ -85,13 +69,13 @@ export const Filter = () => {
 				label: t('diameter', true),
 				name: 'radius',
 				focusValue: `R${14}`,
-				options: fildterData?.disc_diameter?.map(item => ({ value: item.value, label: `R${item.value}`, p: item.p }))
+				options: data?.disc_diameter?.map(item => ({ value: item.value, label: `R${item.value}`, p: item.p }))
 			});
 
 			filterConfigs.push({
 				label: t('fasteners', true),
 				name: 'krip',
-				options: fildterData?.krip?.map(item => ({ value: item.value, label: item.value, p: item.p }))
+				options: data?.krip?.map(item => ({ value: item.value, label: item.value, p: item.p }))
 			});
 
 			filterConfigs.push({

@@ -34,7 +34,11 @@ export const Footer = () => {
 	};
 
 	const link = (link: string, title: string, index: number) => {
-		return <Link key={ index } className='text-white block text-sm font-medium mt-4 transition hover:text-[#0091E5]' to={ link } >
+		return <Link
+			key={ index }
+			className='text-white block text-sm font-medium mt-4 transition hover:text-blue-300 hover:underline'
+			to={ link }
+		>
 			{ t(title, true) }
 		</Link>
 	}

@@ -23,7 +23,7 @@ interface ContactsProps {
 }
 
 export const ContactsComponent: FC<ContactsProps> = ({ isInfo, telephones }) => {
-	return <div className={ twMerge('py-1 text-white flex items-center', isInfo && 'text-black flex-col') }>
+	return <div className={ twMerge('py-1 text-white flex items-center', isInfo && 'text-black flex-col items-start gap-2') }>
 		{telephones.map((item, index) => {
 			return <div key={index} className={ twMerge('flex items-center my-0.5 text-sm font-semibold', !isInfo && 'mr-1.5 md:mr-5') } >
 				<img src={phoneLogos[item.logo]} alt={item.logo + '-logo'}/>

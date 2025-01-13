@@ -12,7 +12,6 @@ import { FilterAlt } from './FilterAlt';
 import { CatalogContent } from './CatalogContent';
 import { LayoutWrapper } from '../../components/Layout';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { TextSeo } from '../../components/Home';
 import { Section } from '../../models/filter';
 import { FetchBrand } from './FetchBrand';
 import { FetchModel } from './FetchModel';
@@ -134,6 +133,5 @@ export const Catalog = () => {
 			<FilterAlt isOpenFilter={ isOpenFilter } closeFilter={ closeFilter } />
 			<CatalogContent openFilter={ openFilter } />
 		</div>
-		<TextSeo />
 	</LayoutWrapper>
 };
