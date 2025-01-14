@@ -124,8 +124,8 @@ export const FilterAltComponent: FC<FilterAltProps> = (
 		classNames('fixed lg:static top-0 left-0 right-0 bottom-0 bg-[#070B14]/60 lg:bg-transparent z-20 lg:block',
 			{'hidden': !isOpenFilter })
 	}>
-		<button onClick={ () => closeFilter() } className='absolute top-5 right-5 lg:hidden'>
-			<Icons.CloseIcon className='fill-[#B9B9BA] w-7 h-7' />
+		<button onClick={ () => closeFilter() } className='absolute top-5 right-5 lg:hidden bg-[#B9B9BA] rounded-full p-1'>
+			<Icons.CloseIcon className='fill-[#B9B9BA] w-5 h-5' />
 		</button>
 		<div className='filter h-screen lg:h-auto w-[calc(100%-70px)] lg:w-64 mr-6 pt-4 lg:pt-0 bg-white lg:bg-transparent'>
 			{section !== Section.Battery && <div className='filter-tabs grid grid-cols-2 gap-2.5 -mb-0.5'>

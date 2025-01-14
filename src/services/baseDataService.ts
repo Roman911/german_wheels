@@ -107,6 +107,11 @@ export const baseDataAPI = createApi({
 				url: `/api/model/${id}`,
 			}),
 		}),
+		fetchBrands: build.query({
+			query: ({ type, id }) => ({
+				url: `/api/catalog-map/${type}${id ? '/' + id : ''}`,
+			}),
+		}),
 		createComment: build.mutation({
 			query: (comment) => ({
 				url: '/api/addReview',

@@ -12,7 +12,7 @@ export const FilterBtn: FC<FilterBtnProps> = ({ openFilter, title }) => {
 		onClick={() => openFilter()}
 		className='lg:hidden flex items-center font-bold gap-x-2.5'
 	>
-		<Icons.FilterIcon/>
+		<Icons.FilterIcon className='fill-black' />
 		{ title }
 	</button>
 };
