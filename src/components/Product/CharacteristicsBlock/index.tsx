@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
+import DOMPurify from 'dompurify';
 import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector, useAppTranslation } from '../../../hooks';
@@ -26,7 +27,7 @@ export const CharacteristicsBlock: FC<CharacteristicsBlockProps> = ({ data }) =>
 	const { section } = useAppSelector(state => state.filterReducer);
 	const { lang } = useAppSelector(state => state.langReducer);
 	const t = useAppTranslation();
-	const metaDescription = data?.data.model_description[lang]?.meta_description;
+	const description = data?.data.descr[lang]?.description;
 	const vehicleType = data?.data.offer_group.vehicle_type;
 	const vehicleTransform = vehicleType ? VehicleTypeTransform(vehicleType) : undefined;
 	const dispatch = useAppDispatch();
@@ -44,6 +45,15 @@ export const CharacteristicsBlock: FC<CharacteristicsBlockProps> = ({ data }) =>
 			return `/catalog/battery${to}`
 		}
 	};
+
+	const HtmlContent = memo(({ htmlString }: { htmlString: string }) => {
+		const sanitizedHtml = DOMPurify.sanitize(htmlString, {
+			ADD_TAGS: ['iframe'],
+			ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'loading', 'referrerpolicy']
+		});
+
+		return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />;
+	});
 
 	return <section className='mt-8 md:mt-16'>
 		<div className='gap-x-2.5 border-b border-[#E0E4E8] hidden md:flex'>
@@ -241,7 +251,7 @@ export const CharacteristicsBlock: FC<CharacteristicsBlockProps> = ({ data }) =>
 			</div>
 		</div>}
 		{tab === 'description' && <div className='my-5 md:my-6 leading-7'>
-			{metaDescription && <p>{metaDescription}</p>}
+			{ description && <HtmlContent htmlString={ description } /> }
 		</div>}
 		{tab === 'reviews' && <Comments
 			review={data?.data.review}

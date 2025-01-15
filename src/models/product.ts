@@ -108,9 +108,20 @@ interface Photo {
 	small: string
 }
 
+interface Descr {
+	description: string
+	meta_description: string
+	meta_h1: string
+	meta_title: string
+}
+
 export interface Product {
 	disabled: boolean
 	size_format: number
+	descr: {
+		ua: Descr
+		ru: Descr
+	}
 	photo: {
 		url_part: string
 		url_part2: string
