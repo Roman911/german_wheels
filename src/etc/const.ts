@@ -12,5 +12,7 @@ export const ROUTES = {
 	autoGoods: 'ru?/auto-goods/',
 	services: 'ru?/services/',
 	page: 'ru?/page/*',
-	catalogMap: 'ru?/catalog-map/*',
+	brands: 'ru?/catalog-map',
+	catalogMap: 'ru?/catalog-map/:section/',
+	catalogList: 'ru?/catalog-map/:section/:id',
 };

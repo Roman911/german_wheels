@@ -25,7 +25,7 @@ const Modal = (props: Props) => {
 	}, []);
 
 	const handleClose: MouseEventHandler<HTMLDivElement | HTMLButtonElement> = () => {
-		onClose && onClose();
+		if(onClose) onClose();
 	};
 
 	return isMounted ? (

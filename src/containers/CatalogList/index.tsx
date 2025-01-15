@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import { useAppSelector, useAppTranslation } from '../../hooks';
-import { BrandsList } from '../../components/CatalogMap';
+import { ProductList } from '../../components/CatalogMap';
 import { LayoutWrapper } from '../../components/Layout';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { NoResult, Spinner } from '../../components/Lib';
@@ -10,12 +10,12 @@ import { NoResult, Spinner } from '../../components/Lib';
 import { Language } from '../../models/language';
 import { baseDataAPI } from '../../services/baseDataService';
 
-export const CatalogMap = () => {
+export const CatalogList = () => {
 	const { lang } = useAppSelector(state => state.langReducer);
 	const { settings } = useAppSelector(state => state.settingsReducer);
 	const t = useAppTranslation();
-	const { section } = useParams();
-	const { data, isLoading } = baseDataAPI.useFetchBrandsQuery(section);
+	const { section, id } = useParams();
+	const { data, isLoading } = baseDataAPI.useFetchBrandItemsQuery({ section, id });
 
 	const title = `${ t('manufacturers', true) } ${ section ? t(section) : '' }`;
 
@@ -28,7 +28,7 @@ export const CatalogMap = () => {
 		{
 			id: 2,
 			title: title,
-			url: '/'
+			url: `/catalog-map/${section}`
 		}
 	];
 
@@ -39,7 +39,7 @@ export const CatalogMap = () => {
 		</Helmet>
 		<Breadcrumbs path={ path } />
 		<Spinner height='h-60' show={ isLoading } size='large'>
-			{data ? <BrandsList data={ data } section={ section } title={ title } /> : <NoResult
+			{data ? <ProductList data={ data } section={ section } title={ title } /> : <NoResult
 				noResultText={ lang === Language.UA ?
 					'На жаль, по заданих параметрах товарів не знайдено' :
 					'К сожалению, по заданным параметрам товаров не найдено'

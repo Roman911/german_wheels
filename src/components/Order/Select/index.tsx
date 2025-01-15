@@ -98,7 +98,7 @@ export const MySelect: FC<SelectProps> = (
 
 	const handleInputChange = (newValue: string) => {
 		const cleanedText = newValue.replace(/[^а-яА-ЯіїєґІЇЄҐ' ]/g, '');
-		setState && setState(cleanedText?.toString());
+		if(setState) setState(cleanedText?.toString());
 	}
 
 	return <Select

@@ -15,7 +15,9 @@ import { CalculatorForTires } from './containers/CalculatorForTiresPage';
 import { AutoGoods } from './containers/AutoGoods';
 import { Services } from './containers/Services';
 import { Alias } from './containers/Alias';
+import { Brands } from './containers/Brands';
 import { CatalogMap } from './containers/CatalogMap';
+import { CatalogList } from './containers/CatalogList';
 import { ErrorPage } from './containers/Error/404';
 
 const router = createBrowserRouter([
@@ -75,8 +77,16 @@ const router = createBrowserRouter([
 				element: <Services />
 			},
 			{
+				path: ROUTES.brands,
+				element: <Brands />
+			},
+			{
 				path: ROUTES.catalogMap,
 				element: <CatalogMap />
+			},
+			{
+				path: ROUTES.catalogList,
+				element: <CatalogList />
 			},
 			{
 				path: ROUTES.page,

@@ -1,2 +1,3 @@
 export { Categories } from './Categories';
-export { List } from './List';
+export { BrandsList } from './BrandsList';
+export { ProductList } from './ProductList';

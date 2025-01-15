@@ -108,8 +108,13 @@ export const baseDataAPI = createApi({
 			}),
 		}),
 		fetchBrands: build.query({
-			query: ({ type, id }) => ({
-				url: `/api/catalog-map/${type}${id ? '/' + id : ''}`,
+			query: (section) => ({
+				url: `/api/catalog-map/${section}`,
+			}),
+		}),
+		fetchBrandItems: build.query({
+			query: ({ section, id }) => ({
+				url: `/api/catalog-map/${section}/${id}`,
 			}),
 		}),
 		createComment: build.mutation({
